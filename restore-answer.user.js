@@ -86,11 +86,13 @@
 	const { popup, contentPlaceholder } = createPopup();
 
 	window.restoreinput = function (accept = false) {
+		console.log("restoring iput");
 		let contentToRestore = "No content found to restore.";
 		const textareas = document.querySelectorAll('textarea[name="antwoord"]');
 		textareas.forEach((textarea) => {
 			const uniqueFormId = textarea.closest("div[id]").id;
 			const savedData = localStorage.getItem(uniqueFormId);
+			console.log({ uniqueFormId }, { savedData });
 			if (savedData) {
 				const { value } = JSON.parse(savedData);
 				if (value !== null) {
