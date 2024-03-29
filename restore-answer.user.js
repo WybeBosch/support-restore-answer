@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Enhanced Save & Restore Textarea Input with Popup Styling and Toggle
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Adds a "Restore answer" button to display a custom styled popup for restoring textarea input, with content saved to localStorage.
 // @author       You
 // @match        https://support.yardinternet.nl/*
