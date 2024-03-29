@@ -6,8 +6,8 @@
 // @author       You
 // @match        https://support.yardinternet.nl/*
 // @grant        none
-// @downloadURL  https://raw.githubusercontent.com/WybeBosch/support-restore-answer/main/index.js
-// @updateURL    https://raw.githubusercontent.com/WybeBosch/support-restore-answer/main/index.js
+// @downloadURL  https://raw.githubusercontent.com/WybeBosch/support-restore-answer/main/restore-answer.user.js
+// @updateURL    https://raw.githubusercontent.com/WybeBosch/support-restore-answer/main/restore-answer.user.js
 // ==/UserScript==
 
 (function () {
