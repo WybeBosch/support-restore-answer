@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Enhanced Save & Restore Textarea Input with Popup Styling and Toggle
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Adds a "Restore answer" button to display a custom styled popup for restoring textarea input, with content saved to localStorage.
 // @author       You
 // @match        https://support.yardinternet.nl/*
@@ -62,9 +62,12 @@
 		acceptButton.className = "wb-restore-button";
 		acceptButton.textContent = "Accept";
 		acceptButton.style.cssText = "padding: 5px 10px; cursor: pointer;";
+		acceptButton.onclick = () => {
+			window.restoreinput(true); // Pass true to indicate acceptance
+			popup.style.display = "none";
+		};
 
-		closeButton.onclick = acceptButton.onclick = () =>
-			(popup.style.display = "none");
+		closeButton.onclick = () => (popup.style.display = "none");
 
 		const contentPlaceholder = document.createElement("div");
 		contentPlaceholder.className = "wb-restore-popup-content";
@@ -86,17 +89,18 @@
 	const { popup, contentPlaceholder } = createPopup();
 
 	window.restoreinput = function (accept = false) {
-		console.log("restoring iput");
 		let contentToRestore = "No content found to restore.";
 		const textareas = document.querySelectorAll('textarea[name="antwoord"]');
 		textareas.forEach((textarea) => {
 			const uniqueFormId = textarea.closest("div[id]").id;
 			const savedData = localStorage.getItem(uniqueFormId);
-			console.log({ uniqueFormId }, { savedData });
 			if (savedData) {
 				const { value } = JSON.parse(savedData);
 				if (value !== null) {
 					contentToRestore = value;
+					if (accept) {
+						textarea.value = value; // Restore the content if accept is true
+					}
 				}
 			}
 		});
